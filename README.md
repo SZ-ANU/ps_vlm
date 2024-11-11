@@ -60,6 +60,9 @@ In certain stages of processing, the code displays "fancy" progress bars when pr
 
 If you would like more control over the program output, please see the logging section below.
 
+### Output files
+
+By default the updated code will generate the output files mean_velocity.txt, mean_veloctity_noise_remove.txt and "index_number".csv (e.g., 1.csv, 2.csv, etc). By running the ts_plot.ipynb, the InSAR velocity and the time series of unwrapped LOS displacement can be visualized.
 
 ### Logging
 
