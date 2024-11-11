@@ -62,7 +62,7 @@ If you would like more control over the program output, please see the logging s
 
 ### Output files
 
-By default the updated code will generate the output files mean_velocity.txt, mean_veloctity_noise_remove.txt and "index_number".csv (e.g., 1.csv, 2.csv, etc). By running the velocity.py, InSAR mean velocity can be visualized. Interactive (via Dash) time series for the unwrapped LOS displacement can be plotted by running time_series_plot.py. Dash is running on http://127.0.0.1:8050/ .
+By default the updated code will generate the output files mean_velocity.txt, mean_veloctity_noise_remove.txt and "index_number".csv (e.g., 1.csv, 2.csv, etc). By running the velocity_plot.py, InSAR mean velocity can be visualized. Interactive (via Dash) time series for the unwrapped LOS displacement can be plotted by running time_series_plot.py. Dash is running on http://127.0.0.1:8050/ .
 
 ### Logging
 
