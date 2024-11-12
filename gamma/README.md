@@ -95,7 +95,7 @@ This program is intended to be called at the start of the `run_gamma_workflow` s
 
 The parameters above can also be set in your environment, for example:
 ```bash
-export aoi="149.12747394 -35.39624112 149.15662046 -35.37862325"
+export aoi="-175.25328964 -21.17275123 -175.15546203 -21.11270927"
 export startdate="20190101"
 export enddate="20231106"
 ```
