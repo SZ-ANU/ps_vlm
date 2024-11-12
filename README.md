@@ -48,6 +48,15 @@ The code can be run from the command line using the `psvlm.py` script. By defaul
 ```
 This allows the user to run the code in a step-by-step manner and inspect the output at each stage, or to re-run various stages, or to restart the code from a specific stage.
 
+To run the code in NCI, the recommanded way is via:
+```
+"Your path to psvlm"/gamma/run_stamps
+```
+Before the stage 0, run:
+```
+"Your path to psvlm"/gamma/run_prep_stamps
+```
+
 ### Output messages
 
 By default the code is verbose and will output messages to the console. Output can be disabled using the following option:
@@ -62,7 +71,11 @@ If you would like more control over the program output, please see the logging s
 
 ### Output files
 
-By default the updated code will generate the output files mean_velocity.txt, mean_veloctity_noise_remove.txt and "index_number".csv (e.g., 1.csv, 2.csv, etc). By running the velocity_plot.py, InSAR mean velocity can be visualized. Interactive (via Dash) time series for the unwrapped LOS displacement can be plotted by running time_series_plot.py. Dash is running on http://127.0.0.1:8050/.
+By default the updated code will generate the output files mean_velocity.txt, mean_veloctity_noise_remove.txt and "index_number".csv (e.g., 1.csv, 2.csv, etc). By running the velocity_plot.py, InSAR mean velocity can be visualized. Interactive (via Dash) time series for the unwrapped LOS displacement can be plotted by running time_series_plot.py. Dash is running on http://127.0.0.1:8050/. Other plots can be generated via:
+
+```
+"Your path to psvlm"/gamma/run_visual
+```
 
 ### Logging
 
