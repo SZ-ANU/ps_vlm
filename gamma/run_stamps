@@ -5,4 +5,4 @@ set -e
 
 source /g/data/dg9/env
 
-~/ps_vlm/psvlm.py 0-6 --da_thresh 0.1
+~/ps_vlm/psvlm_updated.py 0-7 --da_thresh 0.3
