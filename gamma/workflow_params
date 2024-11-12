@@ -70,11 +70,11 @@ cwd = Path.cwd()
 req_export('aoi')
 req_export('startdate', 1, 'daterange') # startdate is the first date in the daterange
 req_export('enddate', 2, 'daterange') # enddate is the second date in the daterange
+req_export('dem')
+req_export('passdir')
+req_export('map_srs')
 
 opt_export('opodspath', '/g/data/dg9/orbits')
-opt_export('dem', '/g/data/dg9/copernicus-dem/dem-australia.tif')
-opt_export('passdir', 'Descending')
-opt_export('map_srs', 32755)
 opt_export('aoi_srs', 4326)
 opt_export('pol', 'vv')
 opt_export('azlks', 1)
