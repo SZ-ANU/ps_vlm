@@ -17,7 +17,7 @@ You may have the all this setup already but just in case you haven't. First, set
 Once that is done, you should be able to do:
 ```bash
 cd ~
-git clone https://github.com/SZ-ANU/psvlm.git
+git clone https://github.com/SZ-ANU/ps_vlm.git
 ```
 This will create a path called `ps_vlm` in your home directory with all the code.
 
