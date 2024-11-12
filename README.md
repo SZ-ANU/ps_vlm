@@ -52,7 +52,7 @@ To run the code in NCI, the recommanded way is via:
 ```
 "Your path to ps_vlm"/gamma/run_stamps
 ```
-Before the stage 0, run:
+Before the stage 0, need to run:
 ```
 "Your path to ps_vlm"/gamma/run_prep_stamps
 ```
