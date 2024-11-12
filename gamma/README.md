@@ -97,13 +97,13 @@ The parameters above can also be set in your environment, for example:
 ```bash
 export aoi="149.12747394 -35.39624112 149.15662046 -35.37862325"
 export startdate="20190101"
-export enddate="20230101"
+export enddate="20231106"
 ```
 If they are set, then the `workflow_params` program will not override them.
 
 The parameters can also be set by creating a file called `{param}.txt` in the working directory. For example, to set the area of interest, you can create a file called `aoi.txt` with the contents:
 ```
-149.12747394 -35.39624112 149.15662046 -35.37862325
+-175.25328964 -21.17275123 -175.15546203 -21.11270927
 ```
 
 Certain parameters are required for the workflow to run, such as the area of interest and the date range. If these are not set, the workflow will exit with an error. The following parameters have the following defaults:
