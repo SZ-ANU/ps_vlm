@@ -17,7 +17,7 @@ You may have the all this setup already but just in case you haven't. First, set
 Once that is done, you should be able to do:
 ```bash
 cd ~
-git clone https://github.com/SZ-ANU/ps_vlm.git
+git clone git@github.com:daleroberts/ps_vlm.git
 ```
 This will create a path called `ps_vlm` in your home directory with all the code.
 
@@ -41,15 +41,27 @@ Briefly, the minimal way to run this workflow over an area in Australia is to fi
 mkdir -p /g/data/dg9/$USER/canberra/prep
 cd /g/data/dg9/$USER/canberra/prep
 ```
-This has created a working directory for the Canberra area. You can replace `canberra` with whatever you like. The name `prep` is just a convention to indicate that this is the pre-processing (preparation) step. This is where you will run the workflow and many files will be generated here. For large areas or deep time series, this directory can get quite large.
+This has created a working directory for the Tonga area. You can replace `Tonga` with whatever you like. The name `prep` is just a convention to indicate that this is the pre-processing (preparation) step. This is where you will run the workflow and many files will be generated here. For large areas or deep time series, this directory can get quite large.
 
 Now define an area of interest by specifying a bounding box in "minX minY maxX maxY" (W,S,E,N) format in the file `aoi.txt`.
 ```bash
-echo "149.12747394 -35.39624112 149.15662046 -35.37862325" > aoi.txt
+echo "-175.25328964 -21.17275123 -175.15546203 -21.11270927" > aoi.txt
 ```
 Define a date range to consider in the file `daterange.txt`.
 ```bash
-echo "20190101 20230101" > daterange.txt
+echo "20190101 20231106" > daterange.txt
+```
+Define the path of the DEM (If your aoi is inside Australia, the default DEM is /g/data/dg9/copernicus-dem/dem-australia.tif).
+```bash
+echo "Your path to the DEM" > dem.txt
+```
+Define the pass direction
+```bash
+echo "Descending/Ascending" > passdir.txt
+```
+Define the EPSG code (use Tonga as an example).
+```bash
+echo "5887" > map_srs.txt
 ```
 Submit the job (where I have assumed that `ps_vlm` is in your home directory) and you are currently in the `prep` directory.
 ```
@@ -127,6 +139,10 @@ The program has the following arguments:
  - `-workers` - the number of workers to use (default is 10 or `$PBS_NCPUS` if running on NCI)
 
 Note that this program is explicitly designed to be run on the NCI and it will use the PBS job system to run in parallel. The number of workers can be set with the `-workers` argument. If this is not set, it will default to 10 or the number of CPUs available in the PBS job.
+
+### `DEM` generation
+
+The DEM has already been well prepared for Australia (/g/data/dg9/copernicus-dem/dem-australia.tif). If the AOI is outside Australia, then need to download your own DEM (e.g., via USGS earth explore: https://earthexplorer.usgs.gov/). For the large AOI, the downloaded small patches can be combined via QGIS.
 
 ### `collect_obs_by_date`
 
