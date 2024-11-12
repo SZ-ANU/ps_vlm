@@ -5,4 +5,4 @@ set -e
 
 source /g/data/dg9/env
 
-~/ps_vlm/psvlm_vis.py
+~/ps_vlm/psvlm_vis_updated.py
