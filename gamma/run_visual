@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+#PBS -P dg9 -q megamem -l walltime=48:00:00,mem=3000GB,ncpus=48,jobfs=400GB -l wd
+#PBS -l storage=scratch/dg9+gdata/dg9+gdata/fj7
+set -e
+
+source /g/data/dg9/env
+
+~/ps_vlm/psvlm_vis.py
