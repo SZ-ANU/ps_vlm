@@ -181,3 +181,8 @@ For example, in the workflow script, you might have the following command:
 ```bash
 mosaic_aoi -bbox $(echo $aoi) -must_contain -unique -opods ${opodspath} -pol ${pol} -twd $workdir -template "{date}.{pol}.SLC_tab" *.zip_files
 ```
+
+### Limitation
+Currently, the current workflow can only process the study areas located inside a single burst of one sub-swaths. If error happens, please check the output .json files to adjust the AOI.
+
+
