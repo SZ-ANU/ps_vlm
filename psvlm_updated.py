@@ -51,14 +51,13 @@ This updates in current version (10-Nov-2024) includes:
   - speed up the processing time and reduce the ram cost,
   - fix the index errors and typos,
   - fix the bugs for mean velocity calculation, 
-  - fix the errors of patch corners coordinates missing,
   - generate outcome files, including unwrapped displacements in different periods, mean velocity result, etc.
 
 Note: At this stage the code can smoothly run, but still under development:
   - the reference set function has not been well tested, 
   - in Stage 7, some non-existing files or parameters are requested to be loaded, which needs to be checked,
   - some functions only works in default setting, like the threshold setting in stage 3,
-  - no suitable tropospheric correction method applied,
+  - No suitable tropospheric correction method applied,
   - the problems in previous stages still exsit.
 
     
@@ -118,10 +117,10 @@ gamma_stdev_reject = 0
 lambda = 0.055465759531382094
 max_topo_err = 20
 percent_rand = 20
-ref_centre_lonlat = ""
-ref_lat = "-6.74 -6.72"
-ref_lon = "146.99 147.01"
-ref_radius = inf
+ref_centre_lonlat = "-175.179 -21.145" 
+ref_lat = "-21.155 -21.135"
+ref_lon = "-175.189 -175.169"
+ref_radius = 100
 ref_x = ""
 ref_y = ""
 sb_scla_drop_index = ""
@@ -2556,6 +2555,7 @@ def stage1_load_data(endian: str = "b", opts: dotdict = dotdict()) -> None:
     # Determine corners based on a small percentage of points
 
     # The tr and tl will show NaN results as the NaN values are sorted at the end of the sort_x and sort_y error (*Siyuan)
+
 
     # Calculate rotation angle
 
@@ -6754,6 +6754,8 @@ def stage7_calc_scla(
     m = lscov(G, ph.T, ifg_vcm_use)
     K_ps_uw = m[1, :]
 
+    #print(m)
+
 
     if scla_method == "L1":
         for i in range(ps.n_ps):
@@ -6790,11 +6792,11 @@ def stage7_calc_scla(
             ifg_vcm[unwrap_ifg_index - 1, unwrap_ifg_index - 1],
         )
 
-        np.savetxt("mean_velocity.txt", mean_vel_ps_uw[1,:]*365)
+        np.savetxt("mean_velocity_test.txt", mean_vel_ps_uw[1,:]*365)
 
         np.savetxt("day_diff.txt", G[:,1])
 
-        np.savetxt("mean_velocity_remove_noise.txt", mean_vel_C_ps_uw[1,:]*365)        
+        np.savetxt("mean_velocity_remove_master_noise_test.txt", mean_vel_C_ps_uw[1,:]*365)        
 
         if coest_mean_vel == 0:
             C_ps_uw = np.mean(
@@ -6975,11 +6977,16 @@ def ps_setref(ps: Optional[dotdict] = None) -> Array:
                 & (ps["lonlat"][:, 1] < ref_lat[1])
             )[0]
 
+            print("test",ref_lon[0])
+
             if ref_radius < np.inf:
-                ref_xy = llh2local(ref_centre_lonlat.T, ps["ll0"]) * 1000
+                ref_centre_lonlat = np.reshape(ref_centre_lonlat, (-1, 1))
+                ps["ll0"] = np.reshape(ps["ll0"], (-1, 1))
+                ref_xy = llh2local(ref_centre_lonlat, ps["ll0"]) * 1000
                 xy = llh2local(ps["lonlat"][ref_ps, :].T, ps["ll0"]) * 1000
                 dist_sq = (xy[0, :] - ref_xy[0]) ** 2 + (xy[1, :] - ref_xy[1]) ** 2
                 ref_ps = ref_ps[dist_sq <= ref_radius**2]
+                print(ref_ps)
 
     if len(ref_ps) == 0:
         if ps is not None:
@@ -6994,7 +7001,7 @@ def ps_setref(ps: Optional[dotdict] = None) -> Array:
         else:
             log(f"{len(ref_ps)} ref PS selected")
 
-    log(f"Reference PS: {ref_ps}")
+    #log(f"Reference PS: {ref_ps}")
 
     return ref_ps
 
@@ -7141,6 +7148,7 @@ def ts_export_csv() -> None:
     lat=ps["lonlat"][:,1]
     dates = datestr(ps.day)
 
+    print(dates)
     np.savetxt("dates.txt", dates, fmt="%s")
 
 
