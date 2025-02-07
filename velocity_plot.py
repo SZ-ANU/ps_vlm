@@ -100,8 +100,8 @@ ax1.add_image(osm_img, int(scale)) # add OSM with zoom specification
 # -- 14+   = extremely fine image, select for roads, blocks, buildings
 
 
-mean_vel_path = './TS_0.3_ascending/mean_velocity.txt'
-lonlatfile = '/Users/siyuanzhao/Documents/Tonga/lonlat_ascending.txt'
+mean_vel_path = 'your path/mean_velocity.txt'
+lonlatfile = 'your path/lonlat.txt'
 mean_vel = np.genfromtxt(mean_vel_path,skip_header=0)
 
 lonlat = np.genfromtxt(lonlatfile,skip_header=0)
@@ -125,6 +125,6 @@ cbar = fig.colorbar(X, cax=cbar_ax)
 cbar.ax.tick_params(labelsize=10)
 cbar.ax.set_ylabel('LOSD_Vel (mm/yr)',fontsize=12)
 
-plt.savefig("./Tonga_ascending_LOSD_vel_0.3_lsq.png", format='png', bbox_inches='tight',transparent=True,pad_inches=0,dpi=300)
+#plt.savefig("./Tonga_ascending_LOSD_vel_0.3_lsq.png", format='png', bbox_inches='tight',transparent=True,pad_inches=0,dpi=300)
 
 plt.show() # show the plot
